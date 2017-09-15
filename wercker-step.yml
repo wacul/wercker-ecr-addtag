@@ -1,0 +1,27 @@
+name: ecr-addtag
+version: 0.1.0
+description: aws ecr add tag
+keywords:
+  - ecr
+properties:
+  key:
+    type: string
+    required: true
+  secret:
+    type: string
+    required: true
+  region:
+    type: string
+    required: true
+  aws-registry-id:
+    type: string
+    required: true
+  repository:
+    type: string
+    required: true
+  source-tag:
+    type: string
+    required: true
+  add-tag:
+    type: string
+    required: true
