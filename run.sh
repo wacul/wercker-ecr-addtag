@@ -73,8 +73,7 @@ export AWS_SECRET_ACCESS_KEY="${WERCKER_ECR_ADDTAG_SECRET}"
 export AWS_DEFAULT_REGION="${WERCKER_ECR_ADDTAG_REGION}"
 
 # ecr docker login
-$(aws ecr get-login --no-include-email --region us-east-1)
 TEMP_FILE=$(mktemp)
 aws ecr batch-get-image --registryId "${WERCKER_ECR_ADDTAG_AWS_REGISTRY_ID}" --repository-name "${WERCKER_ECR_ADDTAG_REPOSITORY}" --image-ids "imageTag=${WERCKER_ECR_ADDTAG_SOURCE_TAG}" --query images[].imageManifest --output text > "${TEMP_FILE}"
-aws ecr put-image --repository-name "${WERCKER_ECR_ADDTAG_AWS_REGISTRY_ID}" --image-tag "${WERCKER_ECR_ADDTAG_ADD_TAG}" --image-manifest "file://${TEMP_FILE}"
+aws ecr put-image --registryId "${WERCKER_ECR_ADDTAG_AWS_REGISTRY_ID}" --repository-name "${WERCKER_ECR_ADDTAG_AWS_REGISTRY_ID}" --image-tag "${WERCKER_ECR_ADDTAG_ADD_TAG}" --image-manifest "file://${TEMP_FILE}"
 

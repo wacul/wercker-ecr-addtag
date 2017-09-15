@@ -6,7 +6,7 @@ Wercker step for aws ecr add tag
 ```
 deploy:
   steps:
-    - wacul/quay-addtag:
+    - wacul/ecr-addtag:
         key: $AWS_ACCESS_KEY_ID
         secret: $AWS_SECRET_ACCESS_KEY
         region: $AWS_DEFAULT_REGION
