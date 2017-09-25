@@ -20,8 +20,7 @@ type_exists() {
 
 # Check awscli is installed
 if ! type_exists 'aws'; then
-  error "Please install awscli"
-  exit 1
+  pip install -r requirements.txt
 fi
 
 # Check variables
