@@ -18,23 +18,9 @@ type_exists() {
   return 1
 }
 
-# Check pip is installed
-if ! type_exists 'pip'; then
-  if type_exists 'curl'; then
-    curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py | sudo python2.7
-  elif type_exists 'wget' && type_exists 'openssl'; then
-    wget -q -O - https://bootstrap.pypa.io/get-pip.py | sudo python2.7
-  else
-    error "Please install pip, curl, or wget with openssl"
-    exit 1
-  fi
-fi
-
-# Install python dependencies
-INSTALL_DEPENDENCIES=$(pip install -r $WERCKER_STEP_ROOT/requirements.txt 2>&1)
-if [ $? -ne 0 ]; then
-  error "Unable to install dependencies"
-  warn "$INSTALL_DEPENDENCIES"
+# Check awscli is installed
+if ! type_exists 'aws'; then
+  error "Please install awscli"
   exit 1
 fi
 
