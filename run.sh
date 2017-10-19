@@ -20,7 +20,7 @@ type_exists() {
 
 # Check awscli is installed
 if ! type_exists 'aws'; then
-  pip install -r requirements.txt
+  pip install -r $WERCKER_STEP_ROOT/requirements.txt
 fi
 
 # Check variables
